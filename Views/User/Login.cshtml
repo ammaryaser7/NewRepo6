@@ -1,0 +1,37 @@
+﻿@model RCCClinic.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-group">
+    <label>Email</label>
+    @*@Html.TextBox("Email")*@
+    @*<input type="email" name="Email" class="form-control" />*@
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" } )
+    @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    <label>Password</label>
+    @*@Html.Password("Password")*@
+    @*<input type="password" name="Password" class="form-control" />*@
+
+    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger" })
+
+</div>
+    <button type="submit" class="btn btn-primary">
+        <i class="glyphicon glyphicon-user"></i>
+        Login
+    </button>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+}
+

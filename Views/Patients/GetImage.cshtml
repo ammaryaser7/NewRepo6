@@ -1,0 +1,24 @@
+﻿@model RCCClinic.Models.Patient
+@{
+    ViewBag.Title = "GetImage";
+}
+<style>
+    img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+@*<h2 class="text-info">
+    <a href="~/Images/@ViewData["imagefile"]">
+        Download
+        <i class="glyphicon glyphicon-download "></i>
+        </a>
+</h2>*@
+
+       </a>
+<div class="panel-body">
+    <div class="panel-info">
+        <img src="~/Images/@ViewData["imagefile"]" class="img-thumbnail" title="Right click then SAVE TARGET AS to download picture" />
+    </div>
+
+</div>
