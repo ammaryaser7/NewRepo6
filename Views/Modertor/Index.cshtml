@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    $(function () {
+        $("#btnAdd").click(function () {
+            // {'id' : '34', 'name':'ammar' }
+            var formdata = {
+                Title: $("#txtTitle").val(),
+                Details: $("#txtDetails").val(),
+                Ontime: $("#txtOntime").val()
+            }
+            $.ajax({
+                url: "/api/News",
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(formdata),
+                success: function (data) {
+                    var list = "<ul class='list-group'>";
+                    list += "<li class='list-group-item'>" + data.ID + "</li>";
+                    list += "<li class='list-group-item'>" + data.Title + "</li>";
+                    list += "<li class='list-group-item'>" + data.Details + "</li>";
+                    list += "<li class='list-group-item'>" + data.Ontime + "</li></ul>";
+                    $("#output").html(list);
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                }
+
+
+            });
+
+
+        }); //end  btnAdd
+
+        $("#btnGetAll").click(function () {
+
+            GetAll();
+
+
+        }); // end btnGetAll
+
+
+        function GetAll() {
+            $.ajax({
+                url: "/api/News",
+                type: "get",
+                contentType: "application/json ; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var table = "<table class='table'>";
+                    table += "<tr><th>ID</th>";
+                    table += "<th>Title</th>";
+                    table += "<th>Details</th>";
+                    table += "<th>OnTime</th>";
+                    table += "<th></th><th></th></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        table += "<tr>";
+                        table += "<td>" + data[i].ID + "</td>";
+                        table += "<td>" + data[i].Title + "</td>";
+                        table += "<td>" + data[i].Details + "</td>";
+                        table += "<td>" + data[i].Ontime + "</td>";
+                        table += "<td><button type=button class='btn btn-link' value=" + data[i].ID + " >Edit </button></td>";
+                        table += "<td> <i style='color:red;font-size:19px'  class='glyphicon glyphicon-remove' value=" + data[i].ID + " ></i></td></tr>";
+                    }
+                    $("#output").html(table);
+
+
+                }
+
+
+            });
+        }
+
+        $("#btnEdit").click(function () {
+            // {'id' : '34', 'name':'ammar' }
+            var formdata = {
+                ID: $("#txtID").val(),
+                Title: $("#txtTitle").val(),
+                Details: $("#txtDetails").val(),
+                Ontime: $("#txtOntime").val()
+            }
+            $.ajax({
+                url: "/api/News/" + $("#txtID").val(),
+                type: "put",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(formdata),
+                success: function (data) {
+                    var list = "<ul class='list-group'>";
+                    list += "<li class='list-group-item'>" + data.ID + "</li>";
+                    list += "<li class='list-group-item'>" + data.Title + "</li>";
+                    list += "<li class='list-group-item'>" + data.Details + "</li>";
+                    list += "<li class='list-group-item'>" + data.Ontime + "</li></ul>";
+                    $("#output").html(list);
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                }
+
+
+            });
+
+
+        }); //end  btnEdit
+
+        $(document).on("click", ".glyphicon.glyphicon-remove", function () {
+
+            var conf = confirm("Really , Are you Sure !!");
+           
+               
+            if (conf) {
+
+                $.ajax({
+                    url: "/api/News/" + $(this).attr("value"),
+                    type: "delete",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function () {
+                        //var list = "<ul class='list-group'>";
+                        //list += "<li class='list-group-item'>" + data.ID + "</li>";
+                        //list += "<li class='list-group-item'>" + data.Title + "</li>";
+                        //list += "<li class='list-group-item'>" + data.Details + "</li>";
+                        //list += "<li class='list-group-item'>" + data.Ontime + "</li></ul>";
+                        //$("#output").html(list);
+                        GetAll();
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                    }
+
+
+                });
+            }
+
+           
+
+        }); //end  btn click remove
+
+
+
+        //============================================================
+        $(document).on("click", ".btn.btn-link", function () {
+
+            $.ajax({
+                url: "/api/News/" + $(this).val(),
+                type: "get",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#txtID").val(data.ID);
+                    $("#txtTitle").val(data.Title);
+                    $("#txtDetails").val(data.Details);
+                    $("#txtOntime").attr("type", "text");
+                    $("#txtOntime").val(data.Ontime);
+                }
+            });
+        });// document click
+
+        $("#txtOntime").click(function () {
+
+            $("#txtOntime").attr("type", "date");
+        });
+
+
+
+
+    }); // Main
+
+</script>
+<style>
+    .glyphicon.glyphicon-remove:hover {
+        cursor: pointer;
+    }
+</style>
+
+
+
+<form>
+    <div class="jumbotron">
+        <div class="form-group">
+            <input type="text" class="form-control" id="txtID" placeholder="Enter News ID" />
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="txtTitle" placeholder="Enter News Title" />
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="txtDetails" placeholder="Enter News Details" />
+        </div>
+        <div class="form-group">
+            <input type="date" class="form-control" id="txtOntime" placeholder="Enter News Time" />
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-success" id="btnAdd" type="button">
+                <i class="glyphicon glyphicon-plus"></i> Add
+            </button>
+            <button class="btn btn-primary" id="btnGetAll" type="button">
+                <i class="glyphicon glyphicon-list"></i> Get All News
+            </button>
+            <button class="btn btn-warning" id="btnEdit" type="button">
+                <i class="glyphicon glyphicon-pencil"></i> Save News
+            </button>
+        </div>
+    </div>
+    <div id="output">
+
+    </div>
+
+
+</form>

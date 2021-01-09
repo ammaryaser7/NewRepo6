@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace RCCClinic
+namespace mvc_najehacademy
 {
     public class RouteConfig
     {
@@ -16,9 +16,8 @@ namespace RCCClinic
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional }
+                defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional }
             );
-           
         }
     }
 }

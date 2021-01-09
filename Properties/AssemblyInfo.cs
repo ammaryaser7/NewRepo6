@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RCCClinic")]
+[assembly: AssemblyTitle("mvc_najehacademy")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RCCClinic")]
+[assembly: AssemblyProduct("mvc_najehacademy")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cb5d37dc-fb86-4fce-8b1b-c6becce21af7")]
+[assembly: Guid("b2c3e213-c18f-4549-aebc-e24e566b5dd5")]
 
 // Version information for an assembly consists of the following four values:
 //

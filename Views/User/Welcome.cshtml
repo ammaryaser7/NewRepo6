@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+}
+
+@using mvc_najehacademy.Models
+@if (Session["info"] != null)
+{
+    <h2>Welcome , @( ((User)Session["info"]).Email )  </h2>
+
+}
+
+

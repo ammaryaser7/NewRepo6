@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "AddRole";
+}
+
+<h2>AddRole</h2>
+@model IEnumerable<mvc_najehacademy.Models.User>
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+        @Html.DropDownList("RoleID", null, "-Select Role-", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DropDownList("UserID", null, "-Select User-", new { @class = "form-control" })
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Email</th>
+            <th>Role Name</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.Email</td>
+        @if (item.Role != null)
+        {
+            <td>@item.Role.RoleName </td>
+        }
+        else
+        {
+            <td>Null </td>
+        }
+
+    </tr>
+        }
+    </table>
+
+    <div class="form-group">
+        <input type="submit" value="Add Role" class="btn btn-success"/>
+    </div>
+}

@@ -1,0 +1,34 @@
+﻿@model mvc_najehacademy.Models.User
+@{
+    ViewBag.Title = "Assign";
+}
+
+<h2>Assign</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label> Majors </label>
+        @Html.DropDownList("DDLMajors", null, "select major", new { @class = "form-control" })
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"> Email : @Model.Email </li>
+        <li class="list-group-item"> FullName : @Model.Account.FullName </li>
+        <li class="list-group-item"> Mobile : @Model.Account.Mobile </li>
+        <li class="list-group-item">
+            Image :
+            <img src="~/Images/@Model.Account.Image" width="200" height="200" />
+        </li>
+
+        @if (Model.MajorID != null)
+        {
+            <li class="list-group-item"> Major : @Model.Major.Title </li>
+        }
+
+
+    </ul>
+    <div class="form-group">
+        <input type="submit" value="Assig My Major" class="btn btn-warning" />
+    </div>
+}
+

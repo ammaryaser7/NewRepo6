@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - RCC Clinic </title>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
@@ -17,35 +17,54 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("RCC Clinic", "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "User") </li>
-
                     @if (Session["info"] == null)
                     {
-                        <li>@Html.ActionLink("SignUp", "Register", "User") </li>
-                        <li>@Html.ActionLink("SignIn", "Login", "User") </li>
-
+                        <li>@Html.ActionLink("SignIn", "Login", "User")</li>
+                        <li>@Html.ActionLink("SignUp", "Register", "User")</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Patient", "index", "patients") </li>
+                        <li>@Html.ActionLink("My Account", "details", "Account", new { id = ((User)Session["info"]).ID }, null)</li>
+
+                        if (((User)Session["info"]).Role != null)
+                        {
+
+                            if (((User)Session["info"]).Role.RoleName == "Student")
+                            {
+                                <li>@Html.ActionLink("My Major", "Assign", "Student")</li>
+                            }
+                            if (((User)Session["info"]).Role.RoleName == "Admin")
+                            {
+                                <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+
+                            }
+                        }
+
+
                     }
+
                 </ul>
+                @using mvc_najehacademy.Models
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["info"] != null)
                     {
-                        <li>
-                            @Html.ActionLink("Welcome, " + ((RCCClinic.Models.User)Session["info"]).Email, "Login", "User")
-                        </li>
-                        <li>
-                            @Html.ActionLink("Logout", "Signout", "user")
-                        </li>
-                    }
-                    </ul>
+                        if (((User)Session["info"]).Account != null)
+                        {
+                            <li>@Html.ActionLink("Hello," + ((User)Session["info"]).Account.FullName, "Welcome", "User")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Hello," + ((User)Session["info"]).Email, "Welcome", "User")</li>
+                        }
 
+                        <li>@Html.ActionLink("Signout", "logout", "User")</li>
+                    }
+
+                </ul>
             </div>
         </div>
     </div>
@@ -54,7 +73,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Developed By Ammar Yaser, Email:Ammar.net@outlook.com</p>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 

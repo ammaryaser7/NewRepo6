@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model IEnumerable<mvc_najehacademy.Models.User>
+
+<h2>Admin Welcome</h2>
+@using mvc_najehacademy.Models
+
+@Html.ActionLink("Add Role", "AddRole", "Admin")
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+        @Html.DropDownList("CourseID", null, "-Select Course-", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DropDownList("UserID", null, "-Select User-", new { @class = "form-control" })
+    </div>
+    @*@Html.DropDownList("UserID1", (SelectList)ViewData["listCourses1"], "-Select User-", new { @class = "form-control" })*@
+
+    foreach (var item in ViewBag.UserID)
+    {
+        <div class="form-group">
+            <input type="checkbox" name="Userchecked" value="@(((SelectListItem)item).Value)" />
+            @Html.Label("useremail", ((SelectListItem)item).Text)
+        </div>
+
+
+
+
+    }
+
+
+    <div class="form-group">
+        <input type="submit" name="btnAssign" value="Assign Student" class="btn btn-success" />
+    </div>
+
+    <div class="form-group">
+        <button name="BtnGetStudents" class="btn btn-primary">
+            <i class="glyphicon glyphicon-user"> </i>
+            Get Students
+        </button>
+
+        <button name="BtnGetCourses" class="btn btn-warning">
+            <i class="glyphicon glyphicon-book"> </i>
+            Get Courses
+        </button>
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Email</th>
+            <th>FullName</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Email</td>
+                <td>@item.Account.FullName</td>
+            </tr>
+        }
+    </table>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Course Name</th>
+            <th>Course Price</th>
+            <th>Course Hours</th>
+        </tr>
+        @foreach (var item in ViewData["listCourses"] as List<mvc_najehacademy.Models.Course>)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Hours</td>
+            </tr>
+        }
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+

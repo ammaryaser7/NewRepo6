@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "GetStudentMajors";
+}
+@model IEnumerable<mvc_najehacademy.Models.User>
+<h2>GetStudentMajors</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.DropDownList("MjrID",null,"-Select major-" , new { onchange = "this.form.submit()",  @class="form-control"})
+    <input type="submit" value="Click" class="btn btn-success"/>
+    
+}
+
+<table class="table table-hover">
+    <tr>
+        <th> ID</th>
+        <th> Email</th>
+        <th> FullName</th>
+        <th> Image</th>
+        <th> Major</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.ID</td>
+            <td> @item.Email</td>
+            <td> @item.Account.FullName</td>
+            <td><img src="~/Images/@item.Account.Image" class="img-circle" width="200" height="200" /> </td>
+            <td>  @item.Major.Title </td>
+        </tr>
+
+    }
+</table>

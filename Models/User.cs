@@ -5,30 +5,41 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace RCCClinic.Models
+namespace mvc_najehacademy.Models
 {
     public class User
     {
-        
+        [Key]
         public int ID { get; set; }
 
         [Required]
-        [RegularExpression(@"[a-zA-Z0-9_\.+]+@(live|hotmail|gmail)(\.com)", ErrorMessage = "Should be live, hotmail or gmail")]
-        [Index(IsUnique = true)]
-        [MaxLength(30)]
+        [EmailAddress]
+        [RegularExpression(@"[a-zA-Z0-9_\.+]+@(live|hotmail|gmail)(\.com|\.om)",
+         ErrorMessage ="Should be live, hotmail or gmail")]
+        [Index(IsUnique =true)]
+        [MaxLength(50)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Required!")]
         [DataType(DataType.Password)]
+        [StringLength(20,ErrorMessage ="Length should be between 3 and 20",MinimumLength =3)]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password",ErrorMessage ="Do not match")]
-        //[NotMapped]
-        public string Confirm { get; set; }
+        [Compare("Password")]
+        [StringLength(20, MinimumLength = 3)]
+        public string  Confirm { get; set; }
+        public virtual Account Account { get; set; }
 
 
+        public int? MajorID { get; set; } // FK 
+        public virtual Major Major { get; set; } // Connect relationship as 1 to many
 
+        public virtual List<Junction> Junctions { get; set; }
+
+        public Guid? RoleRoleID { get; set; }
+
+        public virtual Role Role { get; set; } 
     }
 }
