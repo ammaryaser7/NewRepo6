@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvc_najehacademy", "mvc_najehacademy.csproj", "{B2C3E213-C18F-4549-AEBC-E24E566B5DD5}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database2", "..\Database2\Database2.sqlproj", "{DFF323A8-6CE1-49D9-AB5B-D8FB9A33B48F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +15,6 @@ Global
 		{B2C3E213-C18F-4549-AEBC-E24E566B5DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2C3E213-C18F-4549-AEBC-E24E566B5DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2C3E213-C18F-4549-AEBC-E24E566B5DD5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFF323A8-6CE1-49D9-AB5B-D8FB9A33B48F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFF323A8-6CE1-49D9-AB5B-D8FB9A33B48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFF323A8-6CE1-49D9-AB5B-D8FB9A33B48F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{DFF323A8-6CE1-49D9-AB5B-D8FB9A33B48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFF323A8-6CE1-49D9-AB5B-D8FB9A33B48F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFF323A8-6CE1-49D9-AB5B-D8FB9A33B48F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
